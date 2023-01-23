@@ -15,11 +15,31 @@ void main() {
       bank.deposit(10);
       expect(bank.available, 10);
     });
+    
+    test('Bank model deposit should turn earned into 10', () {
+      final bank = BankModel();
+      bank.deposit(10);
+      expect(bank.earned, 10);
+    });
   });
 
-  test('Bank model transfer should turn points into 10', () {
-    final bank = BankModel();
-    bank.transfer(10);
-    expect(bank.points, 10);
+  group('Bank Model transfer tests', () {
+    test('Bank model transfer should turn points into 10', () {
+      final bank = BankModel();
+      bank.transfer(10);
+      expect(bank.points, 10);
+    });
+
+    test('Bank model should turn spent into 10', () {
+      final bank = BankModel();
+      bank.transfer(10);
+      expect(bank.spent, 10);
+    });
+
+    test('Bank model should turn available into 0', () {
+      final bank = BankModel();
+      bank.transfer(10);
+      expect(bank.available, -10);
+    });
   });
 }
